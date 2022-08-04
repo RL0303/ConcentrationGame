@@ -13,6 +13,7 @@
 		E130F268289B91440032818E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E130F266289B91440032818E /* Main.storyboard */; };
 		E130F26A289B91460032818E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E130F269289B91460032818E /* Assets.xcassets */; };
 		E130F26D289B91460032818E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E130F26B289B91460032818E /* LaunchScreen.storyboard */; };
+		E130F275289B9D810032818E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E130F274289B9D810032818E /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E130F269289B91460032818E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E130F26C289B91460032818E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E130F26E289B91460032818E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E130F274289B9D810032818E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				E130F262289B91440032818E /* SceneDelegate.swift */,
 				E130F264289B91440032818E /* ViewController.swift */,
 				E130F266289B91440032818E /* Main.storyboard */,
+				E130F274289B9D810032818E /* Card.swift */,
 				E130F269289B91460032818E /* Assets.xcassets */,
 				E130F26B289B91460032818E /* LaunchScreen.storyboard */,
 				E130F26E289B91460032818E /* Info.plist */,
@@ -141,6 +144,7 @@
 				E130F265289B91440032818E /* ViewController.swift in Sources */,
 				E130F261289B91440032818E /* AppDelegate.swift in Sources */,
 				E130F263289B91440032818E /* SceneDelegate.swift in Sources */,
+				E130F275289B9D810032818E /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
