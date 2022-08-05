@@ -23,9 +23,9 @@ class ViewController: UIViewController {
     var time:Timer?
     var cards = [Card]()
     var pickedCard = [Int]()
-    var pair = 0
-    var seeTime = 5
-    var gameTime = 60
+    var pair : Int!
+    var seeTime : Int!
+    var gameTime : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,10 @@ class ViewController: UIViewController {
     }
 
     func gameInit()->Void{
+        
+        pair = 0
+        seeTime = 5
+        gameTime = 60
         
         countDownLabel.text = String(seeTime)
         pairLabel.text = String(pair)
@@ -66,7 +70,7 @@ class ViewController: UIViewController {
             cardBtns[i].setImage(cards[i].cardImage, for: .normal)
             cards[i].flipped = true
         }
-        if time==nil {
+        if time == nil {
             time = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
         }
     }
@@ -84,15 +88,15 @@ class ViewController: UIViewController {
                 cards[i].flipped = false
                 
             }
-            //使用DispatchQueue設定：翻牌後三秒執行timeView翻轉及開始gameTime倒數
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+            // 0.3秒後執行以下動作
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 UIView.transition(with: self.timeView, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
                 self.countDownLabel.text=String(self.gameTime)
                 self.time = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.gameTimeCountDown), userInfo: nil, repeats: true)
                 
             }
         }
-        countDownLabel.text = String(seeTime)
+        countDownLabel.text = String(seeTime) //update UI
                 
     }
     
@@ -114,7 +118,7 @@ class ViewController: UIViewController {
         countDownLabel.text = String(gameTime)
         if gameTime == 0 {
             time?.invalidate()
-            time=nil
+            time = nil
             let timeOutAlert = UIAlertController(title: "Time Out", message: "Try Again!", preferredStyle: .alert)
             let timeOutAction = UIAlertAction(title: "Restart", style: .default) { (_) in
                 self.restart()
@@ -125,11 +129,11 @@ class ViewController: UIViewController {
     }
     
     func restart() {
-        seeTime = 3
-        gameTime = 60
-        pair = 0
-        pickedCard.removeAll()
+//        seeTime = 3
+//        gameTime = 60
+//        pair = 0
         
+        pickedCard.removeAll()
         for i in cardBtns{
             i.isEnabled = true
         }
@@ -169,7 +173,7 @@ class ViewController: UIViewController {
                         //如組卡牌都配對成功，跳出alert: GameComplete。
                         if self.pair == 6 {
                             self.time?.invalidate() //時間暫停，否則時間將在背後持續運行。
-                            self.time=nil
+                            self.time = nil
                             let gameCompleteAlert = UIAlertController(title: "Game Complete", message: "Well Done!", preferredStyle: .alert)
                             let gameCompleteAction = UIAlertAction(title: "Restart", style: .default) { (_) in
                                 self.restart()
