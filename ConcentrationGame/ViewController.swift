@@ -18,20 +18,19 @@ class ViewController: UIViewController {
     
     @IBOutlet var cardBtns: [UIButton]!
     
+    @IBOutlet weak var playButton: UIButton!
+    
     var time:Timer?
     var cards = [Card]()
     var pickedCard = [Int]()
     var pair = 0
-    
-    var seeTime = 3
+    var seeTime = 5
     var gameTime = 60
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        gameInit()
+//        gameInit()
         
     }
 
@@ -57,7 +56,7 @@ class ViewController: UIViewController {
             Card(cardName: "5", cardImage: UIImage(named: "5"))
             
         ]
-        cards.shuffle()
+        cards.shuffle() //原地洗牌
         displayCards()
 
     }
@@ -73,9 +72,9 @@ class ViewController: UIViewController {
     }
     
     @objc func countDown() {
-        //咪牌時間倒數
+        //記憶卡牌時間倒數
         seeTime -= 1
-        //當咪牌時間歸零時，停止倒數並使用迴圈將UIView.transition將牌翻到背面
+        //當記憶卡牌時間歸零時，停止倒數並使用迴圈將UIView.transition將牌翻到背面
         if seeTime == 0 {
             time?.invalidate()
             time = nil
@@ -96,6 +95,7 @@ class ViewController: UIViewController {
         countDownLabel.text = String(seeTime)
                 
     }
+    
     //控制卡牌判斷正反面，正面時，翻背面/背面時，翻正面
     func flip(index:Int) {
         if cards[index].flipped == false {
@@ -137,6 +137,15 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func play(_ sender: Any) {
+        playButton.isHidden = true
+        for i in cardBtns{
+            i.isHidden = false
+        }
+        gameInit()
+    
+    }
+    
     @IBAction func flipCard(_ sender: UIButton) {
         //設cardNumber為sender，將sender函數加入pickedCard
         if let cardNumber = cardBtns.firstIndex(of: sender){
@@ -152,7 +161,7 @@ class ViewController: UIViewController {
                     //0.6秒後執行: pair+1, enabled=false並翻牌
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.6) {
                         self.pair += 1
-                        self.pairLabel.text = String(self.pair)
+                        self.pairLabel.text = String(self.pair * 10) //score
                         for i in self.pickedCard{
                             self.cardBtns[i].isEnabled = false
                             UIView.transition(with: self.cardBtns[i], duration: 0.5, options: .transitionFlipFromTop, animations: nil, completion: nil)
@@ -194,3 +203,5 @@ class ViewController: UIViewController {
     
 }
 
+
+//after restart 
